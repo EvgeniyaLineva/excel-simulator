@@ -1,60 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Симулятор Excel с ВПР (VLOOKUP)</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Симулятор Excel</title>
 
-  <!-- LuckySheet CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/css/plugins.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/plugins.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/css/luckysheet.css" />
+  <!-- ag-Grid CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css" />
 
-  <!-- LuckySheet JS -->
-  <script src="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/js/plugin.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/luckysheet.umd.js"></script>
+  <!-- ag-Grid JS -->
+  <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
 
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: sans-serif;
-      background-color: #f2f2f2;
+    .formula-bar {
+      margin: 20px;
     }
-    #luckysheet {
-      margin: 20px auto;
-      width: 90%;
-      height: 500px;
-    }
-    .check-button {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
+    input[type="text"] {
+      width: 300px;
+      padding: 5px;
     }
   </style>
 </head>
 <body>
-
-  <h1 style="text-align:center;">Симулятор Excel с формулой VLOOKUP</h1>
-
-  <div id="luckysheet"></div>
-
-  <div class="check-button">
-    <button onclick="checkAnswer()">Проверить</button>
+  <div class="formula-bar">
+    <label for="formula">Формула:</label>
+    <input type="text" id="formula" placeholder="=ВПР(3;A1:C5;2)" />
+    <button id="checkButton">Проверить</button>
   </div>
+
+  <div id="myGrid" class="ag-theme-alpine" style="height: 400px; width: 600px;"></div>
 
   <script src="script.js"></script>
 </body>
 </html>
+

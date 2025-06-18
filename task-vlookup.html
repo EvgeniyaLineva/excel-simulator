@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <title>Задание: ВПР</title>
-   <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/luckysheet.umd.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/css/luckysheet.css">
+  <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/luckysheet.umd.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/css/plugins.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/css/luckysheet.css">
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: sans-serif;
-      background: #f9f9f9;
     }
     #luckysheet {
       width: 100%;
@@ -21,60 +19,52 @@
       border: 1px solid #ccc;
     }
     #checkBtn {
-      padding: 12px 20px;
+      margin: 20px auto;
+      display: block;
+      padding: 10px 20px;
       font-size: 16px;
-      margin: 20px;
-      background: #007BFF;
+      background: #28a745;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
     }
-    #checkBtn:hover {
-      background-color: #0056b3;
-    }
   </style>
 </head>
 <body>
   <div id="luckysheet"></div>
-  <div style="text-align: center;">
-    <button id="checkBtn">Проверить</button>
-  </div>
+  <button id="checkBtn">Проверить</button>
 
   <script>
-    window.addEventListener("load", function () {
+    window.onload = function () {
       luckysheet.create({
         container: 'luckysheet',
         lang: 'ru',
         data: [{
-          name: 'ВПР',
-          config: {},
+          name: 'Лист1',
           celldata: [
-            {r:0, c:0, v:{v:"Товар"}}, {r:0, c:1, v:{v:"Цена"}},
-            {r:1, c:0, v:{v:"Яблоко"}}, {r:1, c:1, v:{v:50}},
-            {r:2, c:0, v:{v:"Груша"}}, {r:2, c:1, v:{v:60}},
-            {r:3, c:0, v:{v:"Банан"}}, {r:3, c:1, v:{v:40}},
-            {r:0, c:3, v:{v:"Выберите товар"}}, {r:0, c:4, v:{v:"Цена товара"}},
-            {r:1, c:3, v:{v:"Груша"}}
-          ],
-        }],
-        showinfobar: false,
-        showtoolbar: true,
-        sheetBottomConfig: false
+            {r:0,c:0,v:{v:"Товар"}},{r:0,c:1,v:{v:"Цена"}},
+            {r:1,c:0,v:{v:"Яблоко"}},{r:1,c:1,v:{v:50}},
+            {r:2,c:0,v:{v:"Груша"}},{r:2,c:1,v:{v:60}},
+            {r:3,c:0,v:{v:"Банан"}},{r:3,c:1,v:{v:40}},
+            {r:0,c:3,v:{v:"Выберите товар"}},{r:0,c:4,v:{v:"Цена товара"}},
+            {r:1,c:3,v:{v:"Груша"}}
+          ]
+        }]
       });
-    });
 
-    document.getElementById("checkBtn").onclick = function () {
-      const value = luckysheet.getCellValue(1, 4); // E2
-      const formula = luckysheet.getCellFormula(1, 4); // формула
+      document.getElementById("checkBtn").onclick = function () {
+        const value = luckysheet.getCellValue(1, 4); // E2
+        const formula = luckysheet.getCellFormula(1, 4); // формула
 
-      if ((value == 60) && formula && formula.toUpperCase().includes("ВПР")) {
-        alert("✅ Правильно! Вы использовали ВПР и нашли цену.");
-      } else if (value == 60) {
-        alert("⚠️ Значение верное, но формула ВПР не используется.");
-      } else {
-        alert("❌ Неверно. Проверьте формулу и попробуйте снова.");
-      }
+        if (value == 60 && formula && formula.toUpperCase().includes("ВПР")) {
+          alert("✅ Правильно! Вы использовали ВПР и нашли цену.");
+        } else if (value == 60) {
+          alert("⚠️ Значение правильное, но формула ВПР не используется.");
+        } else {
+          alert("❌ Неверно. Проверьте формулу.");
+        }
+      };
     };
   </script>
 </body>

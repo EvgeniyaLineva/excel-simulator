@@ -1,73 +1,56 @@
-// Пример данных для таблицы
-const data = [
-  ["1", "Иван", 25],
-  ["2", "Мария", 30],
-  ["3", "Петр", 35],
-  ["4", "Ольга", 28],
-  ["5", "Сергей", 22],
-  ["", "", ""]  // строка для формулы
+const rowData = [
+  { A: "1", B: "Иван", C: "25" },
+  { A: "2", B: "Мария", C: "30" },
+  { A: "3", B: "Петр", C: "35" },
+  { A: "4", B: "Ольга", C: "28" },
+  { A: "5", B: "Сергей", C: "22" },
+  { A: "", B: "", C: "" }, // строка для формулы
 ];
 
-// Настройки таблицы Handsontable
-const container = document.getElementById('myTable');
-const hot = new Handsontable(container, {
-  data: data,
-  colHeaders: ['ID', 'Имя', 'Возраст'],
-  rowHeaders: true,
-  filters: true,
-  dropdownMenu: true,
-  contextMenu: true,
-  manualColumnResize: true,
-  manualRowResize: true,
-  columns: [
-    {type: 'text'}, // ID
-    {type: 'text'}, // Имя
-    {type: 'numeric'} // Возраст
-  ]
-});
+const columnDefs = [
+  { headerName: "A", field: "A", editable: true },
+  { headerName: "B", field: "B", editable: true },
+  { headerName: "C", field: "C", editable: true },
+];
 
-// Функция для обработки формулы VLOOKUP
-function vlookup(lookupValue, tableRange, colIndex, exactMatch = true) {
-  for (let row of tableRange) {
-    if ((exactMatch && row[0] == lookupValue) || (!exactMatch && row[0].includes(lookupValue))) {
-      return row[colIndex - 1]; // Возвращаем значение из указанного столбца
-    }
+const gridOptions = {
+  columnDefs: columnDefs,
+  rowData: rowData,
+  defaultColDef: {
+    resizable: true,
+    sortable: false,
+    filter: false,
   }
-  return "Не найдено"; // Если значение не найдено
-}
+};
 
-// Обработчик для кнопки "Проверить"
-document.getElementById('checkBtn').addEventListener('click', () => {
-  const formula = hot.getDataAtCell(5, 0);  // Чтение значения в ячейке для формулы (например, A6)
+document.addEventListener('DOMContentLoaded', () => {
+  const gridDiv = document.querySelector('#myGrid');
+  agGrid.createGrid(gridDiv, gridOptions);
 
-  if (!formula || !formula.startsWith("=")) {
-    document.getElementById('result').innerText = "Введите формулу в ячейку A6.";
-    return;
-  }
+  document.getElementById("checkBtn").addEventListener("click", () => {
+    const rowIndex = gridOptions.api.getDisplayedRowCount() - 1; // последняя строка
+    const rowNode = gridOptions.api.getDisplayedRowAtIndex(rowIndex);
+    const formula = rowNode.data.A; // допустим, пользователь пишет формулу в колонке A
 
-  try {
-    // Пример парсинга формулы вида: "=VLOOKUP(3, A1:C5, 2, FALSE)"
-    const match = formula.match(/=VLOOKUP\((\d+),\s*(A\d+:C\d+),\s*(\d+),\s*(TRUE|FALSE)\)/);
-
-    if (!match) {
-      document.getElementById('result').innerText = "Неверная формула.";
+    if (!formula || !formula.startsWith("=")) {
+      document.getElementById("result").innerText = "Введите формулу в ячейку A последней строки.";
       return;
     }
 
-    const lookupValue = parseInt(match[1]);
-    const range = match[2].split(':');
-    const colIndex = parseInt(match[3]);
-    const exactMatch = match[4] === 'TRUE';
+    try {
+      // Пример: =VLOOKUP(3, A1:C5, 2, FALSE)
+      const result = Formula.VLOOKUP(3, [
+        ["1", "Иван", 25],
+        ["2", "Мария", 30],
+        ["3", "Петр", 35],
+        ["4", "Ольга", 28],
+        ["5", "Сергей", 22]
+      ], 2, false);
 
-    // Преобразуем строковый диапазон в двумерный массив
-    const tableRange = data.slice(0, 5).map(row => row.slice(0, 3));
-
-    // Выполняем VLOOKUP
-    const result = vlookup(lookupValue, tableRange, colIndex, exactMatch);
-
-    document.getElementById('result').innerText = `Результат: ${result}`;
-  } catch (err) {
-    document.getElementById('result').innerText = `Ошибка: ${err.message}`;
-  }
+      document.getElementById("result").innerText = `Результат: ${result}`;
+    } catch (err) {
+      document.getElementById("result").innerText = `Ошибка: ${err.message}`;
+    }
+  });
 });
 

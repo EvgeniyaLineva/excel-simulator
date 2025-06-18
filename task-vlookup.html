@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,11 +42,13 @@
   </div>
 
   <script>
-    window.onload = function () {
+    window.addEventListener("load", function () {
       luckysheet.create({
         container: 'luckysheet',
+        lang: 'ru',
         data: [{
           name: 'ВПР',
+          config: {},
           celldata: [
             {r:0, c:0, v:{v:"Товар"}}, {r:0, c:1, v:{v:"Цена"}},
             {r:1, c:0, v:{v:"Яблоко"}}, {r:1, c:1, v:{v:50}},
@@ -55,12 +58,11 @@
             {r:1, c:3, v:{v:"Груша"}}
           ],
         }],
-        lang: 'ru',
         showinfobar: false,
         showtoolbar: true,
         sheetBottomConfig: false
       });
-    };
+    });
 
     document.getElementById("checkBtn").onclick = function () {
       const value = luckysheet.getCellValue(1, 4); // E2

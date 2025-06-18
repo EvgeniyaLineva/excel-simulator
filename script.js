@@ -31,7 +31,8 @@ const gridOptions = {
 // Инициализация Ag-Grid
 document.addEventListener("DOMContentLoaded", function() {
   const gridDiv = document.querySelector("#myGrid");
-  new agGrid.Grid(gridDiv, gridOptions);
+  const { createGrid } = agGrid;
+createGrid(gridDiv, gridOptions);
 });
 
 // Функция ВПР (VLOOKUP)

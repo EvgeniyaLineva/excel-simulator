@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Задание: ВПР</title>
+  <script src="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/luckysheet.umd.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/css/plugins.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/css/luckysheet.css">
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; font-family: sans-serif; }
+    #luckysheet { width: 100%; height: 90%; }
+    #checkBtn { padding: 10px 20px; font-size: 16px; margin: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div id="luckysheet"></div>
+  <button id="checkBtn">Проверить</button>
+
+  <script>
+    luckysheet.create({
+      container: 'luckysheet',
+      data: [{
+        name: 'ВПР',
+        celldata: [
+          {r:0, c:0, v:{v:"Товар"}}, {r:0, c:1, v:{v:"Цена"}},
+          {r:1, c:0, v:{v:"Яблоко"}}, {r:1, c:1, v:{v:50}},
+          {r:2, c:0, v:{v:"Груша"}}, {r:2, c:1, v:{v:60}},
+          {r:3, c:0, v:{v:"Банан"}}, {r:3, c:1, v:{v:40}},
+          {r:0, c:3, v:{v:"Выберите товар"}}, {r:0, c:4, v:{v:"Цена товара"}},
+          {r:1, c:3, v:{v:"Груша"}}
+        ],
+      }]
+    });
+
+    document.getElementById("checkBtn").onclick = function () {
+      const cellValue = luckysheet.getCellValue(1, 4); // E2
+      const formula = luckysheet.getCellFormula(1, 4); // формула в E2
+      
+      if ((cellValue == 60) && formula && formula.toUpperCase().includes("ВПР")) {
+        alert("✅ Правильно! Вы использовали ВПР и нашли цену.");
+      } else if (cellValue == 60) {
+        alert("⚠️ Значение верное, но, похоже, вы не использовали ВПР.");
+      } else {
+        alert("❌ Неверно. Попробуйте снова.");
+      }
+    };
+  </script>
+</body>
+</html>

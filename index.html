@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Симулятор Excel с формулами</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Симулятор Excel с ВПР</title>
 
-  <!-- LuckySheet CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/css/plugins.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/css/luckysheet.css" />
+  <!-- Подключение стилей для Handsontable -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@11.0.0/dist/handsontable.full.min.css">
 
-  <!-- LuckySheet JS -->
-  <script src="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/js/plugin.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/luckysheet.umd.js"></script>
-
-  <style>
-    body { font-family: sans-serif; margin:0; padding:0; }
-    #luckysheet { width:100%; height:600px; }
-    .check-button { text-align:center; padding:10px; }
-    .check-button button { padding:10px 20px; font-size:16px; cursor:pointer; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2 style="text-align:center;">Симулятор Excel: Формула VLOOKUP</h2>
-  <div id="luckysheet"></div>
+  <div class="container">
+    <h1>Симулятор Excel с ВПР</h1>
+    
+    <!-- Контейнер для таблицы Handsontable -->
+    <div id="myTable"></div>
 
-  <div class="check-button">
-    <button onclick="checkAnswer()">Проверить формулу!</button>
+    <!-- Кнопка для обработки формулы -->
+    <button id="checkBtn">Проверить</button>
+
+    <!-- Вывод результата -->
+    <div id="result"></div>
   </div>
 
+  <!-- Подключение скрипта для Handsontable -->
+  <script src="https://cdn.jsdelivr.net/npm/handsontable@11.0.0/dist/handsontable.full.min.js"></script>
+
+  <!-- Ваши скрипты -->
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Симулятор Excel с ВПР</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Подключение стилей для Handsontable -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@11.0.0/dist/handsontable.full.min.css">
+  <!-- ag-Grid -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css" />
+  <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Formula parser (excel-formula) -->
+  <script src="https://cdn.jsdelivr.net/npm/formulajs/lib/browser/formula.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>Симулятор Excel с ВПР</h1>
-    
-    <!-- Контейнер для таблицы Handsontable -->
-    <div id="myTable"></div>
-
-    <!-- Кнопка для обработки формулы -->
+    <div id="myGrid" class="ag-theme-alpine" style="height: 400px;"></div>
     <button id="checkBtn">Проверить</button>
-
-    <!-- Вывод результата -->
     <div id="result"></div>
   </div>
 
-  <!-- Подключение скрипта для Handsontable -->
-  <script src="https://cdn.jsdelivr.net/npm/handsontable@11.0.0/dist/handsontable.full.min.js"></script>
-
-  <!-- Ваши скрипты -->
   <script src="script.js"></script>
 </body>
 </html>

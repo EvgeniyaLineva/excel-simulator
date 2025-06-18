@@ -2,25 +2,30 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Симулятор Excel с ВПР</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Симулятор Excel с формулами</title>
 
-  <!-- ag-Grid -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css" />
-  <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+  <!-- LuckySheet CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/css/plugins.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/css/luckysheet.css" />
 
-  <!-- Formula parser (excel-formula) -->
-  <script src="https://cdn.jsdelivr.net/npm/formulajs/lib/browser/formula.min.js"></script>
+  <!-- LuckySheet JS -->
+  <script src="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/js/plugin.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/luckysheet.umd.js"></script>
 
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: sans-serif; margin:0; padding:0; }
+    #luckysheet { width:100%; height:600px; }
+    .check-button { text-align:center; padding:10px; }
+    .check-button button { padding:10px 20px; font-size:16px; cursor:pointer; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Симулятор Excel с ВПР</h1>
-    <div id="myGrid" class="ag-theme-alpine" style="height: 400px;"></div>
-    <button id="checkBtn">Проверить</button>
-    <div id="result"></div>
+  <h2 style="text-align:center;">Симулятор Excel: Формула VLOOKUP</h2>
+  <div id="luckysheet"></div>
+
+  <div class="check-button">
+    <button onclick="checkAnswer()">Проверить формулу!</button>
   </div>
 
   <script src="script.js"></script>
